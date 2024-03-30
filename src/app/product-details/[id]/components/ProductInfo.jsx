@@ -1,8 +1,44 @@
+"use client";
 import { AlertOctagon, BadgeCheck, ShoppingCart } from "lucide-react";
-import React from "react";
+import React, { useContext } from "react";
 import Skelaton from "./Skelaton";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import cartEndpoint from "../../../../utils/cartEndpoint";
+import { CartContext } from "../../../context/CartContext";
 
 const ProductInfo = ({ product }) => {
+  const { user } = useUser();
+  const router = useRouter();
+  const { cart, setCart } = useContext(CartContext);
+  const handleClick = () => {
+    if (!user) {
+      router.push("/sign-in");
+    } else {
+      const data = {
+        data: {
+          username: user.fullname,
+          email: user.primaryEmailAddress.emailAddress,
+          products: [product?.id],
+        },
+      };
+      cartEndpoint
+        .addToCart(data)
+        .then((res) => {
+          console.log(res.data.data);
+          setCart((prev) => [
+            ...prev,
+            {
+              id: res?.data?.data?.id,
+              product,
+            },
+          ]);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
   return (
     <div>
       {product?.id ? (
@@ -30,7 +66,10 @@ const ProductInfo = ({ product }) => {
           <h2 className="text-[32px] text-primary mt-3">
             ${product?.attributes?.price}
           </h2>
-          <button className="flex gap-2 bg-primary hover:bg-teal-600 p-3 rounded-lg text-white">
+          <button
+            className="flex gap-2 bg-primary hover:bg-teal-600 p-3 rounded-lg text-white"
+            onClick={handleClick}
+          >
             <ShoppingCart />
             Add To Cart
           </button>
