@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const BreadCumps = ({ path }) => {
+const BreadCrumps = ({ path }) => {
   return (
     <nav aria-label="Breadcrumb" className="flex">
       <ol className="flex overflow-hidden rounded-lg border border-gray-200 text-gray-600">
@@ -54,4 +54,4 @@ const BreadCumps = ({ path }) => {
   );
 };
 
-export default BreadCumps;
+export default BreadCrumps;

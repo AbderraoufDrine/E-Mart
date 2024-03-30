@@ -1,5 +1,5 @@
 "use client";
-import BreadCumps from "@/components/BreadCumps";
+import BreadCrumps from "@/components/BreadCumps";
 import productEndpoint from "@/utils/productEndpoint";
 import React, { useEffect, useState } from "react";
 import ProductBanner from "./components/ProductBanner";
@@ -33,7 +33,7 @@ const ProductDetails = ({ params }) => {
 
   return (
     <div className="px-10 md:px-28 py-8">
-      <BreadCumps path={path} />
+      <BreadCrumps path={path} />
       <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-0 justify-around">
         <ProductBanner product={product} />
         <ProductInfo product={product} />
