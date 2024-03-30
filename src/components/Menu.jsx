@@ -2,12 +2,8 @@ import React from "react";
 
 const Menu = () => {
   return (
-    <div className="flex h-screen flex-col justify-between border-e bg-white">
+    <div className="flex h-screen w-screen flex-col justify-between border-e bg-white md:hidden transition duration-300 ease-in-out">
       <div className="px-4 py-6">
-        <span className="grid h-10 w-32 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
-          Logo
-        </span>
-
         <ul className="mt-6 space-y-1">
           <li>
             <a

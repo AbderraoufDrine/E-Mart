@@ -1,10 +1,28 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import logo from "../../public/logo.svg";
 import Image from "next/image";
+import Menu from "./Menu";
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    if (showMenu) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
+    };
+  }, [showMenu]);
   return (
-    <header className="bg-white">
+    <header className="bg-white fixed">
       <div className="mx-auto flex h-16 w-screen items-center gap-8 px-4 sm:px-6 lg:px-8 shadow-md">
         <Image src={logo} alt="lgog" width={100} height={100} />
         <div className="flex flex-1 items-center justify-end md:justify-between">
@@ -79,7 +97,10 @@ const Header = () => {
               </a>
             </div>
 
-            <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
+            <button
+              className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
+              onClick={() => setShowMenu((prev) => !prev)}
+            >
               <span className="sr-only">Toggle menu</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,6 +120,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {showMenu && <Menu />}
     </header>
   );
 };
