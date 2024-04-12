@@ -7,10 +7,12 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import { ShoppingCart } from "lucide-react";
 import { CartContext } from "../app/context/CartContext";
 import cartEndpoint from "../utils/cartEndpoint";
+import Cart from "../components/Cart";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   const { user } = useUser();
   const { cart, setCart } = useContext(CartContext);
 
@@ -126,9 +128,11 @@ const Header = () => {
               ) : (
                 <div className="hidden items-center justify-center gap-5 md:flex">
                   <h2 className="flex gap-1 cursor-pointer">
-                    <ShoppingCart />({cart?.length})
+                    <ShoppingCart onClick={() => setShowCart(!showCart)} />(
+                    {cart?.length})
                   </h2>
                   <UserButton afterSignOutUrl="/" />
+                  {showCart && <Cart />}
                 </div>
               )}
 
