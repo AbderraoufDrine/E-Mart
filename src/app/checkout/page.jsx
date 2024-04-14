@@ -7,6 +7,14 @@ import { useSearchParams } from "next/navigation";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHER_KEY);
 
 const Checkout = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckoutContent />
+    </Suspense>
+  );
+};
+
+const CheckoutContent = () => {
   const searchParams = useSearchParams();
   const options = {
     mode: "payment",
@@ -15,13 +23,9 @@ const Checkout = () => {
   };
 
   return (
-    <Suspense>
-      <Elements stripe={stripePromise} options={options}>
-        <Suspense>
-          <CheckoutForm amount={Number(searchParams.get("amount"))} />
-        </Suspense>
-      </Elements>
-    </Suspense>
+    <Elements stripe={stripePromise} options={options}>
+      <CheckoutForm amount={Number(searchParams.get("amount"))} />
+    </Elements>
   );
 };
 

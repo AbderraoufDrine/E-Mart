@@ -3,7 +3,7 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
-import { Suspense, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { useUser } from "@clerk/nextjs";
 import orderEndpoint from "../../../utils/orderEndpoint";
@@ -85,16 +85,14 @@ const CheckoutForm = ({ amount }) => {
     }
   };
   return (
-    <Suspense>
-      <form className="flex justify-center" onSubmit={handleSubmit}>
-        <div className="w-[80%]md: w-[40%] mt-12">
-          <PaymentElement />
-          <button className="w-full p-2 mt-4 text-white rounded-md bg-primary">
-            Submit
-          </button>
-        </div>
-      </form>
-    </Suspense>
+    <form className="flex justify-center" onSubmit={handleSubmit}>
+      <div className="w-[80%]md: w-[40%] mt-12">
+        <PaymentElement />
+        <button className="w-full p-2 mt-4 text-white rounded-md bg-primary">
+          Submit
+        </button>
+      </div>
+    </form>
   );
 };
 
