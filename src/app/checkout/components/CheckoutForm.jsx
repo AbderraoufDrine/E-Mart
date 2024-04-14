@@ -4,17 +4,39 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { useContext, useState } from "react";
-// import { CartContext } from "../../_context/CartContext";
+import { CartContext } from "../../context/CartContext";
 import { useUser } from "@clerk/nextjs";
-// import OrderApi from "../../_utils/OrderApis";
-// import CartApis from "../../_utils/CartApis";
+import orderEndpoint from "../../../utils/orderEndpoint";
+import cartEndpoint from "../../../utils/cartEndpoint";
 const CheckoutForm = ({ amount }) => {
-  // const { cart, setCart } = useContext(CartContext);
-  // const { user } = useUser();
+  const { cart, setCart } = useContext(CartContext);
+  const { user } = useUser();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [errormessage, setErrorMessage] = useState();
+
+  const createOrder = () => {
+    let productIds = [];
+    cart.forEach((prod) => {
+      productIds.push(prod?.product?.id);
+    });
+    const data = {
+      data: {
+        email: user.primaryEmailAddress.emailAddress,
+        username: user.fullName,
+        amount,
+        products: productIds,
+      },
+    };
+    orderEndpoint.createOrder(data).then((res) => {
+      if (res) {
+        cart.forEach((prod) => {
+          cartEndpoint.deleteCartItem(prod?.id).then((res) => {});
+        });
+      }
+    });
+  };
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
@@ -29,6 +51,7 @@ const CheckoutForm = ({ amount }) => {
       setLoading(false);
       setErrorMessage(error.message);
     };
+    createOrder();
     // Trigger form validation and wallet collection
     const { error: submitError } = await elements.submit();
     if (submitError) {
@@ -62,8 +85,8 @@ const CheckoutForm = ({ amount }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="mx-32 md:mx-[320px] mt-12">
+    <form className="flex justify-center" onSubmit={handleSubmit}>
+      <div className="w-[80%]md: w-[40%] mt-12">
         <PaymentElement />
         <button className="w-full p-2 mt-4 text-white rounded-md bg-primary">
           Submit
