@@ -50,7 +50,7 @@ const Header = () => {
   }, [showMenu, user]);
   return (
     !isLoggedIn && (
-      <header className="bg-white">
+      <header className="bg-white fixed z-20 md:z-0 md:static">
         <div className="mx-auto flex h-16 w-screen items-center gap-8 px-4 sm:px-6 lg:px-8 shadow-md">
           <Image src={logo} alt="lgog" width={100} height={100} />
           <div className="flex flex-1 items-center justify-end md:justify-between">
@@ -61,48 +61,25 @@ const Header = () => {
                     className="text-gray-500 transition hover:text-gray-500/75"
                     href="/"
                   >
-                    {" "}
-                    Home{" "}
+                    Home
                   </a>
                 </li>
 
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/"
+                    href="#prod"
                   >
-                    {" "}
-                    Explore{" "}
+                    Products
                   </a>
                 </li>
 
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/"
+                    href="#footer"
                   >
-                    {" "}
-                    Projects{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/"
-                  >
-                    {" "}
-                    About us{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/"
-                  >
-                    {" "}
-                    Contact Us{" "}
+                    Contact Us
                   </a>
                 </li>
               </ul>

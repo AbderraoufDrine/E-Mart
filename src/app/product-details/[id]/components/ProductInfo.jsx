@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import cartEndpoint from "../../../../utils/cartEndpoint";
 import { CartContext } from "../../../context/CartContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductInfo = ({ product }) => {
   const { user } = useUser();
@@ -38,6 +39,7 @@ const ProductInfo = ({ product }) => {
           console.error(err);
         });
     }
+    toast.success("Added to Cart!");
   };
   return (
     <div>
@@ -73,6 +75,20 @@ const ProductInfo = ({ product }) => {
             <ShoppingCart />
             Add To Cart
           </button>
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                width: 300,
+              },
+              success: {
+                iconTheme: {
+                  primary: "#00897B",
+                },
+              },
+            }}
+          />
         </div>
       ) : (
         <Skelaton />

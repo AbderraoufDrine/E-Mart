@@ -14,7 +14,7 @@ const Products = () => {
     getLatestProducts();
   }, []);
   return (
-    <div className="px-10 md: md-20">
+    <div className="px-10 md: md-20" id="prod">
       <h2 className="text-xl my-4">Our Latest Products</h2>
       <ProductList productList={productList} />
     </div>

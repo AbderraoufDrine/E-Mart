@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CartContext } from "../context/CartContext";
 import cartEndpoint from "../../utils/cartEndpoint";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 const CartPage = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -28,6 +29,7 @@ const CartPage = () => {
       .catch((error) => {
         console.log("error", error);
       });
+    toast.success("Removed from Cart!");
   };
 
   return (
@@ -91,6 +93,20 @@ const CartPage = () => {
                       </svg>
                     </button>
                   </div>
+                  <Toaster
+                    position="top-center"
+                    toastOptions={{
+                      duration: 3000,
+                      style: {
+                        width: 300,
+                      },
+                      success: {
+                        iconTheme: {
+                          primary: "#00897B",
+                        },
+                      },
+                    }}
+                  />
                 </li>
               ))}
             </ul>

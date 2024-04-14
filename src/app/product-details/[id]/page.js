@@ -32,7 +32,7 @@ const ProductDetails = ({ params }) => {
   }, [params?.id]);
 
   return (
-    <div className="px-10 md:px-28 py-8">
+    <div className="px-10 md:px-28 py-8 mt-20 md:mt-0">
       <BreadCrumps path={path} />
       <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-0 justify-around">
         <ProductBanner product={product} />
