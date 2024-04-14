@@ -3,9 +3,11 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { CartContext } from "../context/CartContext";
 import cartEndpoint from "../../utils/cartEndpoint";
+import { useRouter } from "next/navigation";
 
 const CartPage = () => {
   const { cart, setCart } = useContext(CartContext);
+  const router = useRouter();
   const getTotal = () => {
     let total = 0;
     cart.forEach((item) => {

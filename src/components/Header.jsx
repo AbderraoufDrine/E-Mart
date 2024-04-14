@@ -132,7 +132,9 @@ const Header = () => {
                     {cart?.length})
                   </h2>
                   <UserButton afterSignOutUrl="/" />
-                  {showCart && <Cart />}
+                  {showCart && (
+                    <Cart showCart={showCart} setShowCart={setShowCart} />
+                  )}
                 </div>
               )}
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CartContext } from "../app/context/CartContext";
 import Link from "next/link";
-const Cart = () => {
+const Cart = ({ showCart, setShowCart }) => {
   const { cart, setCart } = useContext(CartContext);
   return (
     <div
@@ -48,6 +48,7 @@ const Cart = () => {
         <Link
           href="/cart"
           className="block px-5 py-3 text-sm text-gray-100 transition bg-gray-700 rounded hover:bg-gray-600"
+          onClick={() => setShowCart(!showCart)}
         >
           View my cart ({cart?.length})
         </Link>
@@ -55,6 +56,7 @@ const Cart = () => {
         <a
           href="#"
           className="inline-block text-sm text-gray-500 underline transition underline-offset-4 hover:text-gray-600"
+          onClick={() => setShowCart(!showCart)}
         >
           Continue shopping
         </a>
