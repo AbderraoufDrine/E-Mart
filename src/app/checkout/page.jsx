@@ -15,11 +15,11 @@ const Checkout = () => {
   };
 
   return (
-    <Suspense>
-      <Elements stripe={stripePromise} options={options}>
+    <Elements stripe={stripePromise} options={options}>
+      <Suspense>
         <CheckoutForm amount={Number(searchParams.get("amount"))} />
-      </Elements>
-    </Suspense>
+      </Suspense>
+    </Elements>
   );
 };
 
