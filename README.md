@@ -1,3 +1,25 @@
+# Digital Mart
+
+Welcome to Digital Mart, an innovative e-commerce platform dedicated to providing transformative digital courses across a variety of disciplines. Our platform offers a vast selection of courses that are available for instant purchase and access, ensuring that users can start learning right away in a streamlined and efficient manner.
+
+## Features
+
+- **Wide Selection of Courses**: Explore courses across multiple disciplines, each designed to foster learning and skill development.
+- **Instant Access**: Purchase and gain immediate access to courses.
+- **User Accounts**: Secure and personalized user account management using Clerk.
+- **Payment Integration**: Integrated with Stripe for safe and reliable payment processing.
+- **Responsive Design**: Utilizes Tailwind CSS for a mobile-friendly and responsive layout.
+
+## Technologies
+
+- **NextJS**: A React framework for production; provides the backend and frontend architecture.
+- **NodeJS**: Event-driven I/O server-side JavaScript environment based on V8.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+- **Clerk**: Handles authentication and user management seamlessly.
+- **Strapi**: Headless CMS for managing course content dynamically.
+- **Stripe**: Manages secure payment transactions.
+- **PostgreSQL**: Robust and scalable database for storing user and course data.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -28,9 +50,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
